@@ -2,5 +2,8 @@
 
 const app = require('./src/server.js');
 const port = process.env.PORT || 3000;
+const { db } = require('./src/models');
 
-app.start(port);
+db.sync().then(() => {
+  app.start(port);
+});

@@ -10,8 +10,11 @@ const validator = require('./middleware/validator.js');
 // Error Handlers
 const handle404 = require('./error-handlers/404.js');
 const handle500 = require('./error-handlers/500.js');
-
 app.use(express.json());
+app.use('/animal', require('./routes/animal'));
+app.use('/food', require('./routes/food'));
+
+
 app.use(logger);
 app.use(handle404);
 
