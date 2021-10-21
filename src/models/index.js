@@ -5,7 +5,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const FoodModel = require('./food.js');
 const AnimalModel = require('./animal.js');
 
-let DATABASE_URL = process.env.DATABASE_URL;
+let DATABASE_URL = process.env.DATABASE_URL || 'sqlite:memory';
 
 const sequelizeInstance = new Sequelize(DATABASE_URL);
 
