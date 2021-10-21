@@ -7,7 +7,16 @@ const AnimalModel = require('./animal.js');
 
 let DATABASE_URL = process.env.DATABASE_URL || 'sqlite:memory';
 
-const sequelizeInstance = new Sequelize(DATABASE_URL);
+const options = process.env.NODE_ENV === 'production' ? {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+} : {};
+
+const sequelizeInstance = new Sequelize(DATABASE_URL, options);
 
 const FoodTable = FoodModel(sequelizeInstance, DataTypes);
 const AnimalTable = AnimalModel(sequelizeInstance, DataTypes);
